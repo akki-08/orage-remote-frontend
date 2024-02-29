@@ -1,0 +1,48 @@
+<div class="grid grid-rows-8">
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Allow auto connections</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Allow agent forwarding</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Recording folder location</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Screenshot folder location</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Always use a vpn to make connection</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Auto delete sessions</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-between items-center px-6 py-4">
+    <span class="font-medium">Notify me for scheduled access</span>
+    <mat-slide-toggle></mat-slide-toggle>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-expansion-panel
+    class="mat-elevation-z0"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>Configure email settings</mat-panel-title>
+    </mat-expansion-panel-header>
+    <form></form>
+  </mat-expansion-panel>
+  <mat-divider></mat-divider>
+</div>

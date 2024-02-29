@@ -1,0 +1,97 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    style="width: 150px; background-color: #f3f4f6"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar style="height: 150px; justify-content: center">
+      <img
+        src="assets/orage_logo.ico"
+        alt="Orage Technologies"
+        style="width: 100px; height: 100px"
+      />
+    </mat-toolbar>
+    <!-- <mat-nav-list> -->
+    <!--   <button -->
+    <!--     mat-list-item -->
+    <!--     routerLink="" -->
+    <!--     class="flex justify-center items-center" -->
+    <!--   > -->
+    <!--     <span class="pi pi-camera text-5xl"></span> -->
+    <!--   </button> -->
+    <!--   <button -->
+    <!--     mat-list-item -->
+    <!--     routerLink="options" -->
+    <!--     class="flex justify-center items-center" -->
+    <!--   > -->
+    <!--     <span class="pi pi-cog text-5xl"></span> -->
+    <!--   </button> -->
+    <!--   <button -->
+    <!--     mat-list-item -->
+    <!--     routerLink="auth/login" -->
+    <!--     class="flex justify-center items-center" -->
+    <!--   > -->
+    <!--     <span class="pi pi-sign-out text-5xl"></span> -->
+    <!--   </button> -->
+    <!-- </mat-nav-list> -->
+    <div
+      class="rounded-full flex flex-col justify-between items-center mx-5 my-3 bg-gray-200"
+      style="height: 400px"
+    >
+      <div #upperControls>
+        <button
+          class="bg-green-300 p-4 mt-4 ml-3.5 rounded-full text-green-800"
+          routerLink=""
+        >
+          <span class="pi pi-camera text-5xl"></span>
+        </button>
+        <button
+          class="bg-green-300 p-4 mt-4 ml-3.5 rounded-full text-green-800"
+          routerLink="options"
+        >
+          <span class="pi pi-cog text-5xl"></span>
+        </button>
+      </div>
+      <div #logout>
+        <button
+          class="bg-red-300 p-4 mb-4 rounded-full text-red-800"
+          routerLink="/auth/login"
+        >
+          <span class="pi pi-sign-out text-5xl"></span>
+        </button>
+      </div>
+    </div>
+<!--    <mat-tab-group preserveContent>-->
+<!--      <mat-tab label="First">-->
+<!--        <iframe-->
+<!--          width="560"-->
+<!--          height="315"-->
+<!--          src="https://www.youtube.com/embed/B-lipaiZII8"-->
+<!--          style="border: 0"-->
+<!--          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"-->
+<!--          allowfullscreen></iframe>-->
+<!--      </mat-tab>-->
+<!--      <mat-tab label="Second">Note how the video from the previous tab is still playing.</mat-tab>-->
+<!--    </mat-tab-group>-->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Orage Remote</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

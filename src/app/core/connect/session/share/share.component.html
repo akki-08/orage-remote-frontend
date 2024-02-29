@@ -1,0 +1,79 @@
+<div class="p-4">
+  <mat-tab-group class="border-2 border-solid border-neutral-400 rounded-lg">
+    <mat-tab label="Code">
+      <div class="flex flex-col justify-center items-center mt-4">
+        <p>Instruct the client to open the following site</p>
+        <p class="font-medium"><u>arjit.orageconnect.com</u></p>
+        <p>and instruct them to enter the code generated below</p>
+        <p
+          class="py-2 px-3 bg-green-300 text-2xl text-green-800 rounded-full font-bold border-2 border-solid border-green-800"
+          style="letter-spacing: 4px"
+        >
+          {{ sessionIdentifier }}
+          <button (click)="copyToClipboard(); tooltip.show()">
+            <span class="pi pi-copy"></span>
+          </button>
+        </p>
+        <div
+          #tooltip="matTooltip"
+          matTooltip="Copied to the clipboard"
+          matTooltipPosition="below"
+        ></div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Email">
+      <div class="flex flex-col justify-center items-stretch mt-4 mb-5">
+        <p class="text-center">Enter mail receipeint</p>
+        <form
+          [formGroup]="emailForm"
+          class="flex flex-col justify-center items-stretch mx-4"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              placeholder="Ex. pat@example.com"
+            />
+            <mat-error
+              *ngIf="
+                emailForm.hasError('email') && !emailForm.hasError('required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailForm.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <div class="flex justify-center items-center">
+            <a
+              type="submit"
+              href="mailto:{{emailForm.controls['email'].value}}"
+              class="p-3 bg-violet-300 text-violet-800 border-2 border-violet-800 border-solid disabled:opacity-50 hover:bg-violet-800 hover:text-violet-300 my-2 rounded-lg font-medium"
+            >
+              Send email
+            </a>
+          </div>
+
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="p-3 bg-indigo-300 text-indigo-800 border-2 border-indigo-800 border-solid disabled:opacity-50 hover:bg-indigo-800 hover:text-indigo-300 my-2 rounded-lg font-medium"-->
+<!--            routerLink="/home/options"-->
+<!--          >-->
+<!--            Edit email preferences-->
+<!--          </button>-->
+        </form>
+      </div>
+    </mat-tab>
+    <mat-tab label="Link">
+      <div class="flex flex-col justify-center items-center mt-4">
+        <p>Share this link to your client to get started</p>
+        <button (click)="copyLinkAddress(); tooltip.show()">
+          remote-orage.vercel.app
+        </button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

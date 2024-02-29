@@ -1,0 +1,19 @@
+<div class="mx-2">
+  <div *ngFor="let session of sessionData"
+    #session
+    class="flex rounded-full bg-neutral-200 justify-between items-center px-1 mt-2  button-container"
+  >
+      <button class="p-2" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+          {{ session.sessionName }}
+        <mat-icon class="ml-80">more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <!-- <button mat-menu-item (click)="downloadSystemConfig(session.sessionName)">Join</button> -->
+        <button mat-menu-item (click)="downloadSystemConfiguration(session.sessionName,session.ipAddress)">Join</button>
+        <button mat-menu-item (click)="deleteSession(session.sessionName)">Delete</button>
+        <button mat-menu-item (click)="deactivateSession()">Leave</button>
+        <button mat-menu-item (click)="showSessionInfo()">Info</button>
+        <button mat-menu-item>Transfer session</button>
+      </mat-menu>
+    </div>
+  </div>

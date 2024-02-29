@@ -1,0 +1,32 @@
+<div class="py-4 px-6 flex flex-col justify-center items-stretch">
+  <div class="flex flex-row justify-between items-center pt-2">
+    <span class="font-medium">Session Name</span>
+    <span>{{ sessionName }}</span>
+  </div>
+  <div class="flex flex-row justify-between items-center pt-2">
+    <span class="font-medium">Host Status</span>
+    <div *ngIf="hostStatus; else hostNotConnected" class="text-green-500">
+      <span class="pi pi-check"></span><span> Connected</span>
+    </div>
+    <ng-template #hostNotConnected>
+      <div class="text-red-500">
+        <span class="pi pi-times"></span><span> Not Connected</span>
+      </div>
+    </ng-template>
+  </div>
+  <div class="flex flex-row justify-between items-center pt-2">
+    <span class="font-medium">Client Status</span>
+    <div *ngIf="clientStatus; else clientNotConnected" class="text-green-500">
+      <span class="pi pi-check"></span><span> Connected</span>
+    </div>
+    <ng-template #clientNotConnected>
+      <div class="text-red-500">
+        <span class="pi pi-times"></span><span> Not Connected</span>
+      </div>
+    </ng-template>
+  </div>
+  <div class="flex flex-row justify-between items-center pt-2">
+    <span class="font-medium">Session Duration</span>
+    <span>{{ sessionDuration }}</span>
+  </div>
+</div>

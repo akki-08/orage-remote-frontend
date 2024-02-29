@@ -1,0 +1,15 @@
+<div class="p-4">
+  <mat-tab-group
+    class="border-6 border-solid border-neutral-400 rounded-lg drop-shadow-lg"
+  >
+    <mat-tab label="Share">
+      <app-share [sessionCode]="sessionId"></app-share>
+    </mat-tab>
+    <mat-tab label="Status">
+      <app-status [sessionName]="sessName"></app-status>
+    </mat-tab>
+    <mat-tab label="Chat">
+      <app-chat></app-chat>
+    </mat-tab>
+  </mat-tab-group>
+</div>

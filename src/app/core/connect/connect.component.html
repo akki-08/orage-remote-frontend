@@ -1,0 +1,66 @@
+<div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3">
+  <div class="flex flex-col m-4">
+    <button
+      (click)="createSession()"
+      type="button"
+      [disabled]="isCreatingSession"
+      class="rounded-lg bg-amber-200 font-medium text-amber-600 text-lg py-3 px-3 hover:text-amber-200 hover:bg-amber-600 border-2 border-solid border-amber-600"
+    >
+      <div *ngIf="isCreatingSession; else notCreatingSession">
+        <span class="pi pi-spin pi-spinner"></span>
+      </div>
+      <ng-template #notCreatingSession>
+        <div>Create +</div>
+      </ng-template>
+    </button>
+
+    <div
+      class="bg-green-300 rounded-lg mt-2 mx-4 flex justify-between items-center px-1 py-2"
+    >
+      <span class="font-medium text-green-700 px-4">All sessions</span>
+      <span class="text-green-700 font-bold px-4">{{ allSessions }}</span>
+    </div>
+
+    <div
+      class="bg-sky-300 rounded-lg mt-2 mx-4 flex justify-between items-center px-1 py-2"
+    >
+      <span class="font-medium text-sky-700 px-4">Active sessions</span>
+      <span class="text-sky-700 font-bold px-4">{{ activeSessions }}</span>
+    </div>
+    <!--    <div-->
+    <!--      class="bg-red-300 rounded-lg mt-2 mx-4 flex justify-between items-center px-1 py-2"-->
+    <!--    >-->
+    <!--      <span class="font-medium text-red-700 px-4">Disabled sessions</span>-->
+    <!--      <span class="text-red-700 font-bold px-4">{{ disabledSessions }}</span>-->
+    <!--    </div>-->
+  </div>
+  <div class="">
+    <ng-container #sessCont>
+      <!-- <ng-template [ngIf]="!sessionExists"> -->
+        <ng-template [ngIf]="!sessionExists">
+        <div class="flex justify-center items-center mt-8 flex-col">
+          <span class="pi pi-sort-alt-slash text-5xl text-neutral-500"></span>
+          <span class="mt-8 mx-4 bg-red-200 p-4 rounded-lg">
+            <span class="pi pi-info-circle"></span>
+            No session has been created yet. Click on the Create button to
+            create a new session</span
+          >
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+  <!-- <div class="">
+    <ng-container #sessInfo>
+      <ng-template [ngIf]="!sessionExists"> </ng-template>
+    </ng-container>
+  </div> -->
+  <!-- <div *ngFor="let session of sessionData" class="py-1">
+    <button
+      class="font-medium text-lg px-3 py-1 rounded-full"
+    >{{ session.sessionName }}<br>
+    </button>
+    <br>
+  </div> -->
+  
+  
+</div>

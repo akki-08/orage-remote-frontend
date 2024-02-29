@@ -1,0 +1,88 @@
+<div class="flex h-screen justify-between items-center flex-col p-3">
+  <div class="w-96 flex flex-col items-center">
+    <img mat-card-image src="assets/orage_logo.ico" class="w-10 h-10 my-6" />
+    <span class="text-2xl mb-4">Sign in to Konnekt</span>
+
+    <div
+      class="flex w-96 bg-neutral-100 flex-col justify-center items-center border-2 rounded-lg"
+    >
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="logginIn"
+      ></mat-progress-bar>
+      <form
+        [formGroup]="loginForm"
+        novalidate
+        (ngSubmit)="onSubmit()"
+        class="flex w-80 my-6 flex-col justify-center items-stretch"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Enter email</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="isshin@example.com"
+            formControlName="email"
+            required
+            email
+          />
+          <mat-error *ngIf="loginForm.invalid">{{ getEmailError() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            minlength="6"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <mat-error *ngIf="loginForm.invalid">{{
+            getPasswordError()
+          }}</mat-error>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div class="flex justify-between items-center">
+          <mat-checkbox color="primary" formControlName="remember"
+            >Remember me</mat-checkbox
+          >
+          <button type="button" class="text-violet-800">Forgot password</button>
+        </div>
+        <button
+          class="p-3 bg-violet-300 text-violet-800 border-2 border-violet-800 border-solid disabled:opacity-50 hover:bg-violet-800 hover:text-violet-300 my-2 rounded-lg font-medium"
+          [disabled]="!loginForm.valid"
+          type="submit"
+        >
+          <div *ngIf="logginIn; else notLogging">
+            <span class="pi pi-spin pi-spinner"></span>
+          </div>
+          <ng-template #notLogging>
+            <div>Sign In</div>
+          </ng-template>
+        </button>
+      </form>
+    </div>
+    <div
+      class="flex py-4 w-96 bg-neutral-100 flex-col justify-center items-center border-2 rounded-lg mt-4"
+    >
+      <span
+        >New to Konnekt?
+        <button routerLink="/auth/register" class="font-medium text-violet-800">
+          Sign Up
+        </button></span
+      >
+    </div>
+  </div>
+  <div class="mb-6 flex justify-evenly w-96 items-center text-violet-800">
+    <button>Terms</button>
+    <button>Docs</button>
+    <button>Support</button>
+  </div>
+</div>
