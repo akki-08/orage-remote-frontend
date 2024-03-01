@@ -12,7 +12,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConnectComponent } from '../connect.component';
 import { Observable } from 'rxjs';
-import { localUrl } from 'src/app/constants';
+import { localUrl , sessionUrl , backendUrl } from 'src/app/constants';
 // trackByFn(index: number, item: any): number {
 //   return item.code; // Use a unique identifier for each session
 // }
@@ -73,6 +73,9 @@ export class InstanceComponent implements OnInit {
   }
 
   
+  // getSessions(): Observable<any> {
+  //   return this.http.get<any>(`${sessionUrl}/getAllSessions`);
+  // }
   getSessions(): Observable<any> {
     return this.http.get<any>(`${localUrl}/getAllSessions`);
   }
@@ -107,7 +110,7 @@ export class InstanceComponent implements OnInit {
         ipNumber = data.ip;
   
         // Once IP address is fetched, make the delete request
-        this.http.delete<any>('http://localhost:5000/deleteSession', { body: { sessionName: sessionName, ipAddress: ipNumber } })
+        this.http.delete<any>(`${sessionUrl}/deleteSession`, { body: { sessionName: sessionName, ipAddress: ipNumber } })
           .subscribe(
             (response) => {
               console.log("Session deleted successfully:", response);
@@ -125,7 +128,7 @@ export class InstanceComponent implements OnInit {
     );
   }
   getIPAddress(): Observable<any> {
-    return this.http.get<{ ip: string }>('http://localhost:5000/ip');
+    return this.http.get<{ ip: string }>(`${sessionUrl}/ip`);
   }
 
   showSessionInfo(): void {
@@ -208,8 +211,9 @@ export class InstanceComponent implements OnInit {
 
 downloadSystemConfiguration(sessionN:string , IpAddress :string): void {
   const seesionId = sessionN,sessionIP=IpAddress;
-  const backendUrl =`http://localhost:5000/generateSystemConfiguration?customVariable=${seesionId}&IPAddress=${sessionIP}`; // Replace with your backend URL
-
+  // const backendUrl =`http://localhost:5000/generateSystemConfiguration?customVariable=${seesionId}&IPAddress=${sessionIP}`; // Replace with your backend URL
+  // const backendUrl =`${sessionUrl}/generateSystemConfiguration?customVariable=${seesionId}&IPAddress=${sessionIP}`;
+  const backendUrl =`${localUrl}/generateSystemConfiguration?customVariable=${seesionId}&IPAddress=${sessionIP}`;
 
   console.log('Session Identifier in system configuration is: '+this.sessionName);
   

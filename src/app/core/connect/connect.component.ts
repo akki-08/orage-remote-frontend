@@ -138,7 +138,8 @@ export class ConnectComponent {
       });
 
     this.http
-      .post<any>(`${sessionUrl}/0session/createSession`, {
+      // .post<any>(`${sessionUrl}/0session/createSession`, {
+        .post<any>(`${localUrl}/0session/createSession`, {
         filename: `${sessionIdentifier}.txt`,
         sessionID: sessionIdentifier,
       })
